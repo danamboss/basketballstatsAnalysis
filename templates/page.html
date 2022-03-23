@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6635QH7MW"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P6635QH7MW');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard 2</title>
+    <style>      
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: lightblue;
+        color: Black;
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 40px);
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 250px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px lightblue;
+        background: white;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chartMenu">
+      <center><p>Basketball Api Charts</p>
+              <p>The following charts are representations of data gotten from basketball api, they compare the attributes and weaknesses of my favourite players</p>
+        <ul class="actions">
+						<!-- <li><a href="#" class="button primary icon solid fa-download">Download</a></li> -->
+            <li><a href="/" class="button">Home Page</a></li>
+            <li><a href="/index2" class="button">Previous Dashboard</a></li>
+           
+					</ul></p></center>
+    </div>
+    <div>
+      <div class="chartCard">
+      <div class="chartBox">
+        <canvas id="myChartradarChart"></canvas>
+        <p></p>
+        <p>This Radar Chart Compares the different strengths and weaknesses of Kevin Durant and Joel Embiid.</p>
+      </div>
+      <div class="chartBox">
+        <canvas id="myChartdoughnutChart"></canvas>
+        <p>This Doughnut Charts Shows the Average points of the 2020 Season of Lebron James, Kevin Durant and Joel Embiid</p>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // config line
+    // setup 
+    const data = {
+      labels: {{info2|safe}},
+      datasets: [{
+        label: 'Kevin Durant',
+        data: {{durant2|safe}},
+        fill: true,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgb(255, 99, 132)',
+        pointBackgroundColor: 'rgb(255, 99, 132)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(255, 99, 132)'
+      }, {
+        label: 'Joel Embiid',
+        data: {{embiid2|safe}},
+        fill: true,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgb(54, 162, 235)',
+        pointBackgroundColor: 'rgb(54, 162, 235)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(54, 162, 235)'
+      }]
+    };
+      const config = {
+        type: 'radar',
+        data: data,
+        options: {
+          elements: {
+            line: {
+              borderWidth: 3
+            }
+          }
+        },
+      };
+
+    const myChartradarChart = new Chart(
+        document.getElementById('myChartradarChart'),
+        config
+      );
+      
+      // render init block
+    const datadoughnutChart = {
+      labels: [
+        'Kevin Durant', 
+        'Joel Embiid', 
+        'Lebron James'
+        ],
+      datasets: [{
+        label: 'Points Comparison First Game of the Season',
+        data: {{lebron7|safe}},
+        backgroundColor: [
+          'green',
+          'blue',
+          'yellow'
+          ]
+          ,
+        borderColor: [
+          'green',
+          'blue',
+          'yellow'
+          ],
+        hoverOffset: 4
+      }]
+    };
+
+    // config 
+    const configdoughnutChart = {
+      type: 'doughnut',
+      data: datadoughnutChart,
+    };
+
+    // render init block
+      const myChartdoughnutChart = new Chart(
+        document.getElementById('myChartdoughnutChart'),
+        configdoughnutChart
+      );
+      </script>
+
+  </body>
+</html>

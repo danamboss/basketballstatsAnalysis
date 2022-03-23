@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6635QH7MW"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P6635QH7MW');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard 1</title>
+    <style>      
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: lightblue;
+        color: black;
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 40px);
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 400px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px lightblue;
+        background: white;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chartMenu">
+      <center><p>Basketball Api Charts</p>
+              <p>The following charts are representations of data gotten from basketball api, they compare the attributes and weaknesses of my favourite players</p>
+      <p><ul class="actions">
+						<!-- <li><a href="#" class="button primary icon solid fa-download">Download</a></li> -->
+          <li><a href="https://Module-2-Assignment.damboson.repl.co" class="button">Home Page</a></li>
+          <li><a href="/page" class="button">Next Dashboard</a></li></p></center>
+    </div>
+    <div>
+    <div class="chartCard">
+      <div class="chartBox">
+        <canvas id="myChart"></canvas>
+        <p>This Double bar chart shows the comparison between Kevin Durant and Joel Embiids offensive stats and games.
+      </div>
+      <div class="chartBox">
+        <canvas id="myChartlineChart"></canvas>
+        <p>This Line Chart shows the points scored by lebron James in all 7 final games he played in  the 2020 title winning finals run.
+      </div>
+      <div class="chartBox">
+        <canvas id="myChartpieChart"></canvas>
+        <p>This Box Chart shows the points comparison of the first game of the season between, Lebron James, Kevin Durant and Joel Embiid. They all ended the season as All Stars and with an MVP nomination.
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    // setup 
+    const data = {
+      labels: {{extract|safe}},
+      datasets: [{
+        label: 'Kevin Durant Stats',
+        data: {{durant|safe}},
+        backgroundColor: 'yellow',
+        borderColor: 'yellow',
+        borderWidth: 1
+      },{
+        label: 'Joel Embiid Stats',
+        data: {{embiid|safe}},
+        backgroundColor: 'green',
+        borderColor: 'green',
+        borderWidth: 1
+      }]
+    };
+
+    // config 
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+      const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+      
+      //line chart
+      // config line
+    
+    
+    // setup 
+    const datalineChart = {
+      labels: ['Game 1', 'Game 2', 'Game 3', 'Game 4', 'Game 5', 'Game 7'],
+      datasets: [{
+        label: 'Lebron James Final Points',
+        data: {{lebron|safe}},
+        backgroundColor: [
+          'green',
+          'blue',
+          'yellow',
+          'orange',
+          'purple',
+          'red',
+          'brown'
+          ],
+        borderColor: [
+          'black',
+          'blue',
+          'yellow',
+          'orange',
+          'purple',
+          'red',
+          'brown'
+          ],
+        borderWidth: 1
+      }]
+    };
+
+    // config 
+    const configlineChart = {
+      type: 'line',
+      data: datalineChart,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+      const myChartlineChart = new Chart(
+        document.getElementById('myChartlineChart'),
+        configlineChart
+      )
+
+          //Pie chart
+      // config line
+    
+    
+    // setup 
+    const datapieChart = {
+      labels: ['Kevin Durant', 'Joel Embiid', 'Lebron James'],
+      datasets: [{
+        label: 'Points Comparison First Game of the Season',
+        data: {{points|safe}},
+        backgroundColor: [
+          'green',
+          'blue',
+          'yellow'
+          ]
+          ,
+        borderColor: [
+          'green',
+          'blue',
+          'yellow'
+          ],
+        hoverOffset: 4
+      }]
+    };
+
+    // config 
+    const configpieChart = {
+      type: 'pie',
+      data: datapieChart,
+      options: {
+      }
+    };
+
+    // render init block
+      const myChartpieChart = new Chart(
+        document.getElementById('myChartpieChart'),
+        configpieChart
+      );
+      </script>
+
+  </body>
+</html>
